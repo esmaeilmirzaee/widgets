@@ -11,40 +11,19 @@ const SearchBar = () => {
     console.log('submitted', term);
   };
 
-  //  https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&srsearch=computer
   useEffect(() => {
-    const search = async () => {
-      const { data } = await axios.get('https://en.wikipedia.org/w/api.php', {
-        params: {
-          action: 'query',
-          list: 'search',
-          origin: '*',
-          format: 'json',
-          srsearch: term,
-        },
-      });
-      setResults(data.query.search);
+    const timedoutId = setTimeout(() => {
+      setDebouncedTerm(term);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timedoutId);
     };
-
-    // To avoid initial delay of page load
-    if (term && !results.length) {
-      search();
-    } else {
-      /* 
-      stop the searching for 1 second, unless user presses another key
-      and cancelling the previous attempt to the axios get by clearTimeout
-      */
-      const timeoutId = setTimeout(() => {
-        if (term) {
-          search();
-        }
-      }, 1000);
-
-      return () => {
-        clearTimeout(timeoutId);
-      };
-    }
   }, [term]);
+
+  useEffect(() => {
+    const search = async () => {};
+  }, [debouncedTerm]);
 
   const renderedResults = results.map((result) => {
     return (
