@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Accordion from './Accordion';
+import SearchBar from './SearchBar';
 
 const items = [
   {
@@ -23,7 +24,7 @@ const items = [
 const App = () => {
   return (
     <div className='ui container' style={{ marginTop: '10px' }}>
-      <Accordion items={items} />
+      <SearchBar />
     </div>
   );
 };
