@@ -12,12 +12,12 @@ const SearchBar = () => {
   };
 
   useEffect(() => {
-    const timedoutId = setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       setDebouncedTerm(term);
     }, 1000);
 
     return () => {
-      clearTimeout(timedoutId);
+      clearTimeout(timeoutId);
     };
   }, [term]);
 
