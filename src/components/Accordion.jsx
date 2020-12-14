@@ -1,42 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-class Accordion extends React.Component {
-  state = { activeIndex: 0 };
+const Accordion = ({ items }) => {
+  const [activeTitle, setActiveTitle] = useState(0);
 
-  onActiveIndex = (index) => {
-    this.setState({ activeIndex: index });
-    console.log('Title clicked', this.state.activeIndex);
+  const onTitleClick = (index) => {
+    setActiveTitle(index);
   };
 
-  renderedItem() {
-    return this.props.items.map((item, idx) => {
-      return (
-        <React.Fragment key={item.title}>
-          <div
-            className={`title ${
-              idx === this.state.activeIndex ? 'active' : ''
-            }`}
-            onClick={() => this.onActiveIndex(idx)}
-          >
-            <i className='dropdown icon'></i>
-            {item.title}
-          </div>
-          <div
-            className={`content ${
-              idx === this.state.activeIndex ? 'active' : ''
-            }`}
-          >
-            <p>{item.content}</p>
-          </div>
-        </React.Fragment>
-      );
-    });
-  }
-  render() {
+  const renderedItems = items.map((item, idx) => {
     return (
-      <div className='ui styled fluid accordion'>{this.renderedItem()}</div>
+      <React.Fragment key={item.title}>
+        <div
+          className={`title ${activeTitle === idx ? 'active' : ''}`}
+          onClick={() => onTitleClick(idx)}
+        >
+          <i className='dropdown icon'></i>
+          {item.title}
+        </div>
+        <div className={`content ${activeTitle === idx ? 'active' : ''}`}>
+          <p>{item.content}</p>
+        </div>
+      </React.Fragment>
     );
-  }
-}
+  });
+
+  return <div className='ui styled fluid accordion'>{renderedItems}</div>;
+};
 
 export default Accordion;
