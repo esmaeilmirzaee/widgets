@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import Accordion from './Accordion';
-import SearchBar from './SearchBar';
+import Dropdown from './Dropdown';
 
 const items = [
   {
@@ -21,10 +20,30 @@ const items = [
   },
 ];
 
+const options = [
+  {
+    label: 'Red',
+    value: 'red',
+  },
+  {
+    label: 'Green',
+    value: 'green',
+  },
+  {
+    label: 'Blue',
+    value: 'blue',
+  },
+];
+
 const App = () => {
+  const [selected, setSelected] = useState(options[0]);
   return (
     <div className='ui container' style={{ marginTop: '10px' }}>
-      <SearchBar />
+      <Dropdown
+        options={options}
+        selected={selected}
+        setSelectedColour={setSelected}
+      />
     </div>
   );
 };
