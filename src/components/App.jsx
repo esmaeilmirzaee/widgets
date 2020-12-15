@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import Dropdown from './Dropdown';
+import Translate from './Translate';
 
 const items = [
   {
@@ -39,11 +39,7 @@ const App = () => {
   const [selected, setSelected] = useState(options[0]);
   return (
     <div className='ui container' style={{ marginTop: '10px' }}>
-      <Dropdown
-        options={options}
-        selected={selected}
-        setSelectedColour={setSelected}
-      />
+      <Translate />
     </div>
   );
 };

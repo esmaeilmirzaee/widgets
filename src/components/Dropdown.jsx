@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const Dropdown = ({ options, selected, setSelectedColour }) => {
+const Dropdown = ({ options, selected, onSetSelected }) => {
   const [open, setOpen] = useState(false);
   const ref = useRef();
 
   useEffect(() => {
     const onBodyClick = (e) => {
-      console.log(open);
       if (ref.current.contains(e.target)) {
         return;
       }
@@ -30,16 +29,16 @@ const Dropdown = ({ options, selected, setSelectedColour }) => {
         value={option.label}
         key={option.label}
         className='item'
-        onClick={() => setSelectedColour(option)}
+        onClick={() => onSetSelected(option)}
       >
-        {option.value}
+        {option.label}
       </div>
     );
   });
   return (
     <div ref={ref} className='ui form'>
       <div className='field'>
-        <label className='label'>Select a colour</label>
+        <label className='label'>Select</label>
         <div
           onClick={() => setOpen(!open)}
           className={`ui selection dropdown ${open ? 'visible active' : ''}`}
