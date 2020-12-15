@@ -3,4 +3,7 @@ import ReactDOM from 'react-dom';
 
 import App from './components/App';
 
-ReactDOM.render(<App />, document.querySelector('#root'));
+import Practise from './exercise/Practise';
+
+// ReactDOM.render(<App />, document.querySelector('#root'));
+ReactDOM.render(<Practise />, document.getElementById('root'));
