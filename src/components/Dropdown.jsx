@@ -6,10 +6,13 @@ const Dropdown = ({ options, selected, onSetSelected }) => {
 
   useEffect(() => {
     const onBodyClick = (e) => {
-      if (ref.current.contains(e.target)) {
-        return;
+      if (ref.current !== null) {
+        console.log('current');
+        if (ref.current.contains(e.target)) {
+          return;
+        }
+        setOpen(false);
       }
-      setOpen(false);
     };
 
     document.body.addEventListener('click', onBodyClick);

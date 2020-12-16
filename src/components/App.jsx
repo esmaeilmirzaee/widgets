@@ -6,6 +6,8 @@ import Search from './Search';
 import Translate from './Translate';
 import Route from './Route';
 
+import Header from './Header';
+
 const items = [
   {
     title: 'Something',
@@ -42,23 +44,26 @@ const options = [
 const App = () => {
   const [selected, setSelected] = useState(options[0]);
   return (
-    <div className='ui container' style={{ marginTop: '10px' }}>
-      <Route path='/'>
-        <Accordion items={items} />
-      </Route>
-      <Route path='/dropdown'>
-        <Dropdown
-          options={options}
-          selected={selected}
-          onSetSelected={setSelected}
-        />
-      </Route>
-      <Route path='/search'>
-        <Search />
-      </Route>
-      <Route path='/translate'>
-        <Translate />
-      </Route>
+    <div className='ui' style={{ marginTop: '10px' }}>
+      <Header />
+      <div className='ui container' style={{ marginTop: '10px' }}>
+        <Route path='/'>
+          <Accordion items={items} />
+        </Route>
+        <Route path='/dropdown'>
+          <Dropdown
+            options={options}
+            selected={selected}
+            onSetSelected={setSelected}
+          />
+        </Route>
+        <Route path='/search'>
+          <Search />
+        </Route>
+        <Route path='/translate'>
+          <Translate />
+        </Route>
+      </div>
     </div>
   );
 };
